@@ -1,12 +1,16 @@
 package it.gp.db_relations.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Entity
+@Table(name = "user_details")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDetails {
 
     @Id
@@ -14,4 +18,8 @@ public class UserDetails {
     private Long id;
     private String address;
     private String phoneNumber;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
